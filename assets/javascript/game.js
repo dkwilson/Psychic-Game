@@ -1,44 +1,82 @@
-/* tracking variables */
-var wins;
-var loses;
-var guesses_left;
-var guesses_count;
-var win_count;
-var userGuess;
+var letters = ["a", "b", "c"];
 
-/* List random array */
-var letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+// This array will hold what we guess
+var guessedLetters = [];
 
-// Create variables that hold references to the places in the HTML where we want to display things.
-var winsText = document.getElementById("winsText");
-var losesText = document.getElementById("losesText");
-var guesses_left = document.getElementById("guesses_left");
-var guesses_count = document.getElementById("guesses_count");
-var win_count = document.getElementById("win_count");
+// This variable will be randomly assigned one of the three letters
+var letterToGuess = null;
 
-// This function is run whenever the user presses a key.
-document.onkeyup = function (event) {
+// This is what we'll use to count down
+var guessesLeft = 9;
 
-    // Determines which key was pressed.
-    var userGuess = event.key;
+// This is the counter for wins/losses
+var wins = 0;
+var losses = 0;
 
-    // Randomly chooses a choice from the options array. This is the word to Guess.
-    var wordToGuest = letters[Math.floor(Math.random() * letters.length)];
+// Below we created three functions to updateGuesses, updateGuessesLeft, and updateGuessesSoFar
+var updateGuessesLeft = function() {
+  // Here we are grabbing the HTML element and setting it equal to the guessesLeft.
+  // (i.e. guessesLeft will get displayed in HTML)
+  document.querySelector("#guesses-left").innerHTML = guessesLeft;
+};
 
-    // This logic determines the outcome of the game (win/loss/tie), and increments the appropriate number
-    if ((userGuess === wordToGuest) {
-        guesses_count++;
-        win_count++;
-        userGuess.textContent = "You chose: " + userGuess;
-        else if (userGuess === wordToGuest) {
-            guesses_count++;
-            loses++;
+var updateLetterToGuess = function() {
+  // Here we get a random letterToGuess and assign it based on a random generator (only looking at a, b, or c)
+  letterToGuess = letters[Math.floor(Math.random() * letters.length)];
+};
 
-        }
+var updateGuessesSoFar = function() {
+  // Here we take the guesses the user has tried -- then display it as letters separated by commas.
+  document.querySelector("#guesses-so-far").innerHTML = guessedLetters.join(
+    ", "
+  );
+};
 
-        // Display the user and computer guesses, and wins/losses/ties.
+// Function will be called when we reset everything
+var reset = function() {
+  guessesLeft = 9;
+  guessedLetters = [];
+  updateLetterToGuess();
+  updateGuessesLeft();
+  updateGuessesSoFar();
+};
 
-        winsText.textContent = "wins: " + wins;
-        lossesText.textContent = "losses: " + losses;
-    }
+// Execute on page load.
+updateLetterToGuess();
+updateGuessesLeft();
+
+// This function will capture the keyboard clicks.
+document.onkeydown = function(event) {
+  // It's going to reduce the guesses by one
+  guessesLeft--;
+
+  // Lowercase the letter
+  var letter = String.fromCharCode(event.which).toLowerCase();
+
+  // Then add the guess to the guessedLetters array
+  guessedLetters.push(letter);
+
+  // Then its going to run the update functions
+  updateGuessesLeft();
+  updateGuessesSoFar();
+
+  // We'll check if there's a match.
+  if (letter === letterToGuess) {
+    // If there is then we win and we'll update the HTML to display the win.
+    wins++;
+    document.querySelector("#wins").innerHTML = wins;
+
+    // Then we'll reset the game
+    reset();
+  }
+
+  // If we are out of guesses...
+  if (guessesLeft === 0) {
+    // Then we will loss and we'll update the HTML to display the loss.
+    losses++;
+    document.querySelector("#losses").innerHTML = losses;
+
+    // Then we'll call the reset.
+    reset();
+  }
 };
