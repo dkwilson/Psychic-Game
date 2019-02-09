@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- Custom styles for this template -->
+    <link href="assets/css/reset.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+
+    <title>The Psychic Game</title>
+  </head>
+
+  <body class="text-center">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+      <header class="masthead mb-auto">
+        <div class="inner">
+          <h1 class="masthead-brand">The Psychic Game</h1>
+          <nav class="nav nav-masthead justify-content-center"></nav>
+        </div>
+      </header>
+
+      <main role="main" class="inner cover">
+        <p class="lead" id="directions">Guess what letter I'm thinking of?</p>
+
+        <div class="card">
+          <div class="card-header" id="cardHead">Game Stats</div>
+          <div class="card-body">
+            `
+            <blockquote class="blockquote mb-0">
+              <div class="gameStats">
+                <p>Wins: <span id="wins">0</span></p>
+
+                <p>Losses: <span id="losses">0</span></p>
+
+                <p>Guesses Left: <span id="guesses-left"></span></p>
+
+                <p>Your Guesses so far: <span id="guesses-so-far"></span></p>
+              </div>
+            </blockquote>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted">Created by DKeith Wilson &copy; 2019</span>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      window.jQuery ||
+        document.write(
+          '<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>'
+        );
+    </script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+      crossorigin="anonymous"
+    ></script>
+    <script src="assets/javascript/game.js"></script>
+  </body>
+</html>
